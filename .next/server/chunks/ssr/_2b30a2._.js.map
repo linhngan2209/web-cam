@@ -1,0 +1,9 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 7, "column": 0}, "map": {"version":3,"sources":["file://C%3A/Users/ADMIN/web-camera/camera-web/src/app/camera/%5BcameraName%5D/page.tsx"],"sourcesContent":["// app/camera/[cameraName]/page.tsx\r\nimport { useParams } from 'next/navigation'; // Thay vì dùng useRouter, sử dụng useParams\r\n\r\nconst CameraPage = () => {\r\n  const { cameraName } = useParams(); // Sử dụng useParams để lấy các tham số từ URL\r\n\r\n  return (\r\n    <div>\r\n      <h1>Trang camera: {cameraName}</h1>\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default CameraPage;\r\n"],"names":[],"mappings":"AAAA,mCAAmC;;;;;AACnC,2UAA6C,4CAA4C;AAAzF;;;AAEA,MAAM,aAAa;IACjB,MAAM,EAAE,UAAU,EAAE,GAAG,CAAA,GAAA,qLAAA,CAAA,YAAS,AAAD,KAAK,8CAA8C;IAElF,qBACE,8OAAC;kBACC,cAAA,8OAAC;;gBAAG;gBAAe;;;;;;;;;;;;AAGzB;uCAEe"}},
+    {"offset": {"line": 36, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}},
+    {"offset": {"line": 47, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":""}},
+    {"offset": {"line": 47, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
+}

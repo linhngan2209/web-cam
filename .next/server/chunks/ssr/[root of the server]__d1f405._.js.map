@@ -1,0 +1,9 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 31, "column": 0}, "map": {"version":3,"sources":["file://C%3A/Users/ADMIN/web-camera/camera-web/src/app/camera/%5BcameraName%5D/page.tsx"],"sourcesContent":["// app/camera/[cameraName]/page.tsx\r\nimport { useRouter } from 'next/router';\r\n\r\nconst CameraPage = () => {\r\n  const { query } = useRouter();\r\n  const { cameraName } = query; // Lấy tên camera từ URL\r\n\r\n  return (\r\n    <div>\r\n      <h1>Chi tiết {cameraName}</h1>\r\n      <p>Thông tin chi tiết về {cameraName} sẽ hiển thị ở đây.</p>\r\n      {/* Bạn có thể thêm các thông tin chi tiết về camera tại đây */}\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default CameraPage;"],"names":[],"mappings":"AAAA,mCAAmC;;;;;AACnC;;;AAEA,MAAM,aAAa;IACjB,MAAM,EAAE,KAAK,EAAE,GAAG,CAAA,GAAA,8HAAA,CAAA,YAAS,AAAD;IAC1B,MAAM,EAAE,UAAU,EAAE,GAAG,OAAO,wBAAwB;IAEtD,qBACE,8OAAC;;0BACC,8OAAC;;oBAAG;oBAAU;;;;;;;0BACd,8OAAC;;oBAAE;oBAAuB;oBAAW;;;;;;;;;;;;;AAI3C;uCAEe"}},
+    {"offset": {"line": 73, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}},
+    {"offset": {"line": 84, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":""}},
+    {"offset": {"line": 84, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
+}
