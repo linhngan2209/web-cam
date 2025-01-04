@@ -5,8 +5,8 @@
 (globalThis.TURBOPACK_CHUNK_LISTS = globalThis.TURBOPACK_CHUNK_LISTS || []).push({
   "path": "static/chunks/src_app_camera_[cameraName]_page_tsx_d89055._.js",
   "chunks": [
-    "static/chunks/_c9231f._.js",
-    "static/chunks/node_modules_react-player_lib_4dc70d._.js"
+    "static/chunks/node_modules_hls_js_dist_hls_mjs_c5cd88._.js",
+    "static/chunks/src_app_camera_[cameraName]_page_tsx_50bbb5._.js"
   ],
   "source": "dynamic"
 });
