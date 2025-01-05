@@ -37,7 +37,7 @@ const CameraPage = () => {
         hls.destroy();
       };
     } else if (videoRef.current?.canPlayType('application/vnd.apple.mpegurl')) {
-      videoRef.current.src = 'http://160.22.122.122:8080/hls/live.m3u8';
+      videoRef.current.src = 'http://160.22.122.122:8080/hls/stream.m3u8';
     } else {
       setError('Trình duyệt của bạn không hỗ trợ HLS.');
     }
