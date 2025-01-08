@@ -1,64 +1,70 @@
-"use client";
-
+'use client';
 import { useEffect, useRef, useState } from 'react';
-import Hls from 'hls.js';
 
 const CameraPage = () => {
-  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const imgRef = useRef<HTMLImageElement | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [isConnected, setIsConnected] = useState(false);
 
   useEffect(() => {
-    if (Hls.isSupported() && videoRef.current) {
-      const hls = new Hls();
+    const eventSource = new EventSource('http://160.22.122.122:8001/sse');
 
-      hls.loadSource('http://160.22.122.122:8080/hls/stream.m3u8'); 
-      hls.attachMedia(videoRef.current);
+    eventSource.onopen = () => {
+      console.log('SSE connection established');
+      setIsConnected(true);
+    };
 
-      hls.on(Hls.Events.ERROR, (event, data) => {
-        console.error("HLS.js Error:", data);
-        if (data.fatal) {
-          switch (data.type) {
-            case Hls.ErrorTypes.NETWORK_ERROR:
-              setError('Lỗi mạng. Vui lòng kiểm tra kết nối!');
-              break;
-            case Hls.ErrorTypes.MEDIA_ERROR:
-              setError('Lỗi media. Đang cố gắng khắc phục...');
-              hls.recoverMediaError();
-              break;
-            default:
-              hls.destroy();
-              setError('Không thể phát video.');
-              break;
+    eventSource.addEventListener('close', () => {
+      console.log('SSE connection closed');
+      setIsConnected(false);
+    });
+
+    eventSource.onerror = (err) => {
+      console.error('SSE Error:', err);
+      setError('Lỗi kết nối SSE.');
+    };
+
+    eventSource.onmessage = (event) => {
+      const frameData = event.data;
+      if (frameData === 'No frame available') {
+        console.log('No frame available');
+      } else {
+        try {
+          const bytes = new Uint8Array(frameData.match(/.{1,2}/g)?.map((byte: string) => parseInt(byte, 16)) || []);
+          const blob = new Blob([bytes], { type: 'image/jpeg' });
+          const url = URL.createObjectURL(blob);
+
+          if (imgRef.current) {
+            imgRef.current.src = url;
           }
+        } catch (err) {
+          console.error('Error processing frame data:', err);
         }
-      });
+      }
+    };
 
-      return () => {
-        hls.destroy();
-      };
-    } else if (videoRef.current?.canPlayType('application/vnd.apple.mpegurl')) {
-      videoRef.current.src = 'http://160.22.122.122:8080/hls/stream.m3u8';
-    } else {
-      setError('Trình duyệt của bạn không hỗ trợ HLS.');
-    }
+    return () => {
+      eventSource.close();
+    };
   }, []);
 
   return (
-    <div className="container mx-auto p-4 bg-gray-900 text-white min-h-[90vh] rounded-xl shadow-lg">
-      <div className="relative w-full h-[70vh] rounded-lg overflow-hidden">
+    <div className="container mx-auto p-4 bg-[#1A202C] text-white min-h-[90vh] rounded-xl shadow-lg">
+      <div className="relative w-full sm:w-4/5 h-[70vh] rounded-lg overflow-hidden mx-auto">
         {error ? (
           <div className="text-center text-red-500">
             <p>{error}</p>
           </div>
-        ) : (
-          <div className="video-container">
-            <video
-              ref={videoRef}
-              controls
-              autoPlay
-              className="video-player w-full h-full rounded-lg shadow-lg"
+        ) : isConnected ? (
+          <div className="flex justify-center items-center w-full h-[70vh]">
+            <img
+              ref={imgRef}
+              alt="Video stream"
+              className="max-w-full max-h-full object-contain rounded-lg shadow-lg"
             />
           </div>
+        ) : (
+          <div className="text-center text-yellow-500">Đang kết nối...</div>
         )}
       </div>
     </div>

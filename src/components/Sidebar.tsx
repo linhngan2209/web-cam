@@ -10,7 +10,7 @@ import { cameraFeeds } from "@/data/videos";
 const MENUS = {
   HOME: "home",
   CAMERA: "camera",
-  ARCHIVE: "archive", // Add new menu item for Lưu trữ
+  ARCHIVE: "archive", 
   SETTINGS: "settings",
 };
 

@@ -10,88 +10,100 @@ __turbopack_esm__({
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$hls$2e$js$2f$dist$2f$hls$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/hls.js/dist/hls.mjs [app-ssr] (ecmascript)");
-"use client";
-;
+'use client';
 ;
 ;
 const CameraPage = ()=>{
-    const videoRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const imgRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(null);
     const [error, setError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
+    const [isConnected, setIsConnected] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
-        if (__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$hls$2e$js$2f$dist$2f$hls$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].isSupported() && videoRef.current) {
-            const hls = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$hls$2e$js$2f$dist$2f$hls$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"]();
-            hls.loadSource('http://160.22.122.122:8080/hls/stream.m3u8');
-            hls.attachMedia(videoRef.current);
-            hls.on(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$hls$2e$js$2f$dist$2f$hls$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].Events.ERROR, (event, data)=>{
-                console.error("HLS.js Error:", data);
-                if (data.fatal) {
-                    switch(data.type){
-                        case __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$hls$2e$js$2f$dist$2f$hls$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].ErrorTypes.NETWORK_ERROR:
-                            setError('Lỗi mạng. Vui lòng kiểm tra kết nối!');
-                            break;
-                        case __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$hls$2e$js$2f$dist$2f$hls$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].ErrorTypes.MEDIA_ERROR:
-                            setError('Lỗi media. Đang cố gắng khắc phục...');
-                            hls.recoverMediaError();
-                            break;
-                        default:
-                            hls.destroy();
-                            setError('Không thể phát video.');
-                            break;
+        const eventSource = new EventSource('http://160.22.122.122:8001/sse');
+        eventSource.onopen = ()=>{
+            console.log('SSE connection established');
+            setIsConnected(true);
+        };
+        eventSource.addEventListener('close', ()=>{
+            console.log('SSE connection closed');
+            setIsConnected(false);
+        });
+        eventSource.onerror = (err)=>{
+            console.error('SSE Error:', err);
+            setError('Lỗi kết nối SSE.');
+        };
+        eventSource.onmessage = (event)=>{
+            const frameData = event.data;
+            if (frameData === 'No frame available') {
+                console.log('No frame available');
+            } else {
+                try {
+                    const bytes = new Uint8Array(frameData.match(/.{1,2}/g)?.map((byte)=>parseInt(byte, 16)) || []);
+                    const blob = new Blob([
+                        bytes
+                    ], {
+                        type: 'image/jpeg'
+                    });
+                    const url = URL.createObjectURL(blob);
+                    if (imgRef.current) {
+                        imgRef.current.src = url;
                     }
+                } catch (err) {
+                    console.error('Error processing frame data:', err);
                 }
-            });
-            return ()=>{
-                hls.destroy();
-            };
-        } else if (videoRef.current?.canPlayType('application/vnd.apple.mpegurl')) {
-            videoRef.current.src = 'http://160.22.122.122:8080/hls/live.m3u8';
-        } else {
-            setError('Trình duyệt của bạn không hỗ trợ HLS.');
-        }
+            }
+        };
+        return ()=>{
+            eventSource.close();
+        };
     }, []);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "container mx-auto p-4 bg-gray-900 text-white min-h-[90vh] rounded-xl shadow-lg",
+        className: "container mx-auto p-4 bg-[#1A202C] text-white min-h-[90vh] rounded-xl shadow-lg",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "relative w-full h-[70vh] rounded-lg overflow-hidden",
+            className: "relative w-full sm:w-4/5 h-[70vh] rounded-lg overflow-hidden mx-auto",
             children: error ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "text-center text-red-500",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                     children: error
                 }, void 0, false, {
                     fileName: "[project]/src/app/camera/[cameraName]/page.tsx",
-                    lineNumber: 51,
+                    lineNumber: 56,
                     columnNumber: 13
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/camera/[cameraName]/page.tsx",
-                lineNumber: 50,
+                lineNumber: 55,
                 columnNumber: 11
-            }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "video-container",
-                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("video", {
-                    ref: videoRef,
-                    controls: true,
-                    autoPlay: true,
-                    className: "video-player w-full h-full rounded-lg shadow-lg"
+            }, this) : isConnected ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "flex justify-center items-center w-full h-[70vh]",
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                    ref: imgRef,
+                    alt: "Video stream",
+                    className: "max-w-full max-h-full object-contain rounded-lg shadow-lg"
                 }, void 0, false, {
                     fileName: "[project]/src/app/camera/[cameraName]/page.tsx",
-                    lineNumber: 55,
+                    lineNumber: 60,
                     columnNumber: 13
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/camera/[cameraName]/page.tsx",
-                lineNumber: 54,
+                lineNumber: 59,
+                columnNumber: 11
+            }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "text-center text-yellow-500",
+                children: "Đang kết nối..."
+            }, void 0, false, {
+                fileName: "[project]/src/app/camera/[cameraName]/page.tsx",
+                lineNumber: 67,
                 columnNumber: 11
             }, this)
         }, void 0, false, {
             fileName: "[project]/src/app/camera/[cameraName]/page.tsx",
-            lineNumber: 48,
+            lineNumber: 53,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/app/camera/[cameraName]/page.tsx",
-        lineNumber: 47,
+        lineNumber: 52,
         columnNumber: 5
     }, this);
 };
