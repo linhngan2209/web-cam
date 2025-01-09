@@ -1,16 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { AiFillHome, AiOutlineVideoCamera, AiOutlineSetting, AiOutlineFolder } from "react-icons/ai"; // Import icon for Lưu trữ
+import { AiFillHome, AiOutlineVideoCamera, AiOutlineSetting, AiOutlineFolder } from "react-icons/ai"; 
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { MdOutlineCamera } from "react-icons/md";
 import Link from "next/link";
-import { cameraFeeds } from "@/data/videos";
 
 const MENUS = {
   HOME: "home",
   CAMERA: "camera",
-  ARCHIVE: "archive", 
+  ARCHIVE: "archive",
   SETTINGS: "settings",
 };
 
@@ -20,24 +19,6 @@ const Sidebar = () => {
   const [activeCamera, setActiveCamera] = useState<string | null>(null);
 
   const toggleCamera = () => setIsCameraOpen((prev) => !prev);
-
-  const renderCameraList = () => {
-    return cameraFeeds.map((camera, idx) => (
-      <Link
-        key={idx}
-        href={`/camera/${camera.id}`}
-        className={`flex items-center gap-3 p-3 rounded-lg cursor-pointer transition ${activeCamera === camera.name ? "text-blue-500" : "hover:bg-gray-700/50"
-          }`}
-        onClick={() => handleActiveCamera(camera.name)}
-      >
-        <div
-          className={`h-2 w-2 rounded-full ${activeCamera === camera.name ? "bg-blue-500" : "bg-green-500"
-            }`}
-        ></div>
-        <span className="text-sm">{camera.name}</span>
-      </Link>
-    ));
-  };
 
   const handleActiveHome = () => {
     setActiveMenu(MENUS.HOME);
@@ -98,7 +79,45 @@ const Sidebar = () => {
           {isCameraOpen ? <FaChevronUp size={18} /> : <FaChevronDown size={18} />}
         </div>
 
-        {isCameraOpen && <ul className="ml-6 mt-2 space-y-2">{renderCameraList()}</ul>}
+        {isCameraOpen && (
+          <ul className="ml-6 mt-2 space-y-2">
+            <Link
+              href="/camera/cam1"
+              className={`flex items-center gap-3 p-3 rounded-lg cursor-pointer transition ${activeCamera === "cam1" ? "text-blue-500" : "hover:bg-gray-700/50"}`}
+              onClick={() => handleActiveCamera("cam1")}
+            >
+              <div className={`h-2 w-2 rounded-full ${activeCamera === "cam1" ? "bg-blue-500" : "bg-green-500"}`}></div>
+              <span className="text-sm">Camera 1</span>
+            </Link>
+
+            <Link
+              href="/camera/cam2"
+              className={`flex items-center gap-3 p-3 rounded-lg cursor-pointer transition ${activeCamera === "cam2" ? "text-blue-500" : "hover:bg-gray-700/50"}`}
+              onClick={() => handleActiveCamera("cam2")}
+            >
+              <div className={`h-2 w-2 rounded-full ${activeCamera === "cam2" ? "bg-blue-500" : "bg-green-500"}`}></div>
+              <span className="text-sm">Camera 2</span>
+            </Link>
+
+            <Link
+              href="/camera/cam3"
+              className={`flex items-center gap-3 p-3 rounded-lg cursor-pointer transition ${activeCamera === "cam3" ? "text-blue-500" : "hover:bg-gray-700/50"}`}
+              onClick={() => handleActiveCamera("cam3")}
+            >
+              <div className={`h-2 w-2 rounded-full ${activeCamera === "cam3" ? "bg-blue-500" : "bg-green-500"}`}></div>
+              <span className="text-sm">Camera 3</span>
+            </Link>
+
+            <Link
+              href="/camera/cam4"
+              className={`flex items-center gap-3 p-3 rounded-lg cursor-pointer transition ${activeCamera === "cam4" ? "text-blue-500" : "hover:bg-gray-700/50"}`}
+              onClick={() => handleActiveCamera("cam4")}
+            >
+              <div className={`h-2 w-2 rounded-full ${activeCamera === "cam4" ? "bg-blue-500" : "bg-green-500"}`}></div>
+              <span className="text-sm">Camera 4</span>
+            </Link>
+          </ul>
+        )}
 
         <Link
           href="/"
@@ -111,6 +130,7 @@ const Sidebar = () => {
           <AiOutlineFolder size={24} />
           <span className="text-lg font-medium">Lưu trữ</span>
         </Link>
+
         <Link
           href="/settings"
           className={`flex items-center gap-4 p-4 rounded-lg cursor-pointer transition-all ${activeMenu === MENUS.SETTINGS
@@ -125,7 +145,7 @@ const Sidebar = () => {
       </ul>
 
       <div className="p-4 text-sm text-center text-gray-400 border-t border-gray-700">
-        © 2024 CamUI
+        © 2025 CamUI
       </div>
     </div>
   );

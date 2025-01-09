@@ -1,4 +1,10 @@
 {
   "/page": "app/page.js",
-  "/camera/[cameraName]/page": "app/camera/[cameraName]/page.js"
+  "/camera/[cameraName]/page": "app/camera/[cameraName]/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/camera/cam1/page": "app/camera/cam1/page.js",
+  "/camera/cam2/page": "app/camera/cam2/page.js",
+  "/camera/cam3/page": "app/camera/cam3/page.js",
+  "/camera/cam4/page": "app/camera/cam4/page.js",
+  "/settings/page": "app/settings/page.js"
 }

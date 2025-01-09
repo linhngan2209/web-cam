@@ -9,121 +9,32 @@ __turbopack_esm__({
     "default": (()=>__TURBOPACK__default__export__)
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
-;
-var _s = __turbopack_refresh__.signature();
+(()=>{
+    const e = new Error("Cannot find module './CameraStream'");
+    e.code = 'MODULE_NOT_FOUND';
+    throw e;
+})();
 'use client';
 ;
+;
 const CameraPage = ()=>{
-    _s();
-    const imgRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
-    const [error, setError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
-    const [isConnected, setIsConnected] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
-    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
-        "CameraPage.useEffect": ()=>{
-            const eventSource = new EventSource('http://160.22.122.122:8001/sse');
-            eventSource.onopen = ({
-                "CameraPage.useEffect": ()=>{
-                    console.log('SSE connection established');
-                    setIsConnected(true);
-                }
-            })["CameraPage.useEffect"];
-            eventSource.addEventListener('close', {
-                "CameraPage.useEffect": ()=>{
-                    console.log('SSE connection closed');
-                    setIsConnected(false);
-                }
-            }["CameraPage.useEffect"]);
-            eventSource.onerror = ({
-                "CameraPage.useEffect": (err)=>{
-                    console.error('SSE Error:', err);
-                    setError('Lỗi kết nối SSE.');
-                }
-            })["CameraPage.useEffect"];
-            eventSource.onmessage = ({
-                "CameraPage.useEffect": (event)=>{
-                    const frameData = event.data;
-                    if (frameData === 'No frame available') {
-                        console.log('No frame available');
-                    } else {
-                        try {
-                            const bytes = new Uint8Array(frameData.match(/.{1,2}/g)?.map({
-                                "CameraPage.useEffect": (byte)=>parseInt(byte, 16)
-                            }["CameraPage.useEffect"]) || []);
-                            const blob = new Blob([
-                                bytes
-                            ], {
-                                type: 'image/jpeg'
-                            });
-                            const url = URL.createObjectURL(blob);
-                            if (imgRef.current) {
-                                imgRef.current.src = url;
-                            }
-                        } catch (err) {
-                            console.error('Error processing frame data:', err);
-                        }
-                    }
-                }
-            })["CameraPage.useEffect"];
-            return ({
-                "CameraPage.useEffect": ()=>{
-                    eventSource.close();
-                }
-            })["CameraPage.useEffect"];
-        }
-    }["CameraPage.useEffect"], []);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "container mx-auto p-4 bg-[#1A202C] text-white min-h-[90vh] rounded-xl shadow-lg",
-        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "relative w-full sm:w-4/5 h-[70vh] rounded-lg overflow-hidden mx-auto",
-            children: error ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "text-center text-red-500",
-                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                    children: error
-                }, void 0, false, {
-                    fileName: "[project]/src/app/camera/[cameraName]/page.tsx",
-                    lineNumber: 56,
-                    columnNumber: 13
-                }, this)
-            }, void 0, false, {
-                fileName: "[project]/src/app/camera/[cameraName]/page.tsx",
-                lineNumber: 55,
-                columnNumber: 11
-            }, this) : isConnected ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "flex justify-center items-center w-full h-[70vh]",
-                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                    ref: imgRef,
-                    alt: "Video stream",
-                    className: "max-w-full max-h-full object-contain rounded-lg shadow-lg"
-                }, void 0, false, {
-                    fileName: "[project]/src/app/camera/[cameraName]/page.tsx",
-                    lineNumber: 60,
-                    columnNumber: 13
-                }, this)
-            }, void 0, false, {
-                fileName: "[project]/src/app/camera/[cameraName]/page.tsx",
-                lineNumber: 59,
-                columnNumber: 11
-            }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "text-center text-yellow-500",
-                children: "Đang kết nối..."
-            }, void 0, false, {
-                fileName: "[project]/src/app/camera/[cameraName]/page.tsx",
-                lineNumber: 67,
-                columnNumber: 11
-            }, this)
+        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(CameraStream, {
+            sseUrl: "http://160.22.122.122:8001/sse" // URL của server SSE
+            ,
+            className: "mx-auto sm:w-4/5" // Tùy chỉnh CSS
         }, void 0, false, {
             fileName: "[project]/src/app/camera/[cameraName]/page.tsx",
-            lineNumber: 53,
+            lineNumber: 8,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/app/camera/[cameraName]/page.tsx",
-        lineNumber: 52,
+        lineNumber: 7,
         columnNumber: 5
     }, this);
 };
-_s(CameraPage, "4ikExvxBgZwPoRG2QTHEsEYKn2w=");
 _c = CameraPage;
 const __TURBOPACK__default__export__ = CameraPage;
 var _c;
