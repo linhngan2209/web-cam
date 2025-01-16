@@ -53,7 +53,7 @@ export default function SecurityCameraGrid() {
                 />
               ) : camera.id === 2 ? (
                 <HLSStream
-                  videoUrl="http://160.22.122.122:8080/hls/stream.m3u8" // Chỉnh lại URL HLS
+                  videoUrl="http://160.22.122.122:8080/hls/stream.m3u8"
                   className="w-full h-full object-cover rounded-md border-2 border-[#444D56]"
                 />
               ) : (
