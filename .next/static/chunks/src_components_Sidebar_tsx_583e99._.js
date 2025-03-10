@@ -6,7 +6,6 @@ var { r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_
 {
 __turbopack_export_value__((__turbopack_import__) => {
     return Promise.all([
-  "static/chunks/node_modules_react-icons_md_index_mjs_78df2b._.js",
   "static/chunks/node_modules_react-icons_ai_index_mjs_b8cfc3._.js",
   "static/chunks/node_modules_react-icons_fa_index_mjs_d2e2d7._.js",
   "static/chunks/node_modules_react-icons_lib_74ccc9._.js",

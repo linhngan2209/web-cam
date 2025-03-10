@@ -1,0 +1,11 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 7, "column": 0}, "map": {"version":3,"sources":["file://C%3A/Users/ADMIN/camera-web/src/components/Loading.tsx"],"sourcesContent":["const Loading = () => {\r\n  return (\r\n    <div className=\"fixed inset-0 flex items-center justify-center bg-white bg-opacity-80\">\r\n      <div className=\"flex flex-col items-center\">\r\n        <div className=\"w-12 h-12 border-4 border-indigo-300 border-t-4 border-t-indigo-600 rounded-full animate-spin\"></div>\r\n      </div>\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default Loading;"],"names":[],"mappings":";;;;;AAAA,MAAM,UAAU;IACd,qBACE,6LAAC;QAAI,WAAU;kBACb,cAAA,6LAAC;YAAI,WAAU;sBACb,cAAA,6LAAC;gBAAI,WAAU;;;;;;;;;;;;;;;;AAIvB;KARM;uCAUS"}},
+    {"offset": {"line": 42, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}},
+    {"offset": {"line": 48, "column": 0}, "map": {"version":3,"sources":["file://C%3A/Users/ADMIN/camera-web/src/app/page.tsx"],"sourcesContent":["'use client';\n\nimport { useEffect } from 'react';\nimport { useRouter } from 'next/navigation';\nimport { checkToken } from '../utils/check_token';\nimport Loading from '@/components/Loading';\n\nexport default function HomePage() {\n  const router = useRouter();\n  // useEffect(() => {\n  //   checkToken(router);\n  // }, [router]);\n  return (\n    <div className=\"flex items-center justify-center h-screen\">\n      <Loading />\n    </div>\n  );\n}"],"names":[],"mappings":";;;;AAGA;AAEA;;;AALA;;;AAOe,SAAS;;IACtB,MAAM,SAAS,CAAA,GAAA,qIAAA,CAAA,YAAS,AAAD;IACvB,oBAAoB;IACpB,wBAAwB;IACxB,gBAAgB;IAChB,qBACE,6LAAC;QAAI,WAAU;kBACb,cAAA,6LAAC,gIAAA,CAAA,UAAO;;;;;;;;;;AAGd;GAVwB;;QACP,qIAAA,CAAA,YAAS;;;KADF"}},
+    {"offset": {"line": 89, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}},
+    {"offset": {"line": 99, "column": 0}, "map": {"version":3,"sources":["file://C%3A/Users/ADMIN/camera-web/node_modules/next/navigation.js"],"sourcesContent":["module.exports = require('./dist/client/components/navigation')\n"],"names":[],"mappings":"AAAA,OAAO,OAAO","ignoreList":[0]}},
+    {"offset": {"line": 100, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
+}

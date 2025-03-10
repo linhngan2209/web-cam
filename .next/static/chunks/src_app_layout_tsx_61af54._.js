@@ -5,10 +5,10 @@
 (globalThis.TURBOPACK_CHUNK_LISTS = globalThis.TURBOPACK_CHUNK_LISTS || []).push({
   "path": "static/chunks/src_app_layout_tsx_61af54._.js",
   "chunks": [
-    "static/chunks/node_modules_9d3f2c._.js",
-    "static/chunks/src_9d7337._.js",
-    "static/chunks/src_app_globals_b80590.css",
-    "static/chunks/src_components_Sidebar_tsx_583e99._.js"
+    "static/chunks/[next]_internal_font_google_noto_sans_jp_90ec3dd3_module_e640aa.css",
+    "static/chunks/node_modules_b86f22._.js",
+    "static/chunks/src_e3dce8._.js",
+    "static/chunks/node_modules_@tanstack_query-devtools_build_fbcc57._.js"
   ],
   "source": "dynamic"
 });

@@ -1,6 +1,19 @@
 {
-  "app": {},
-  "appUsingSizeAdjust": false,
+  "app": {
+    "[project]/src/app/_not-found/page": [
+      "static/media/_F62fjtqLzI2JPCgQBnw7HFYwQgP_FVthw-s.p.6df33075.woff2"
+    ],
+    "[project]/src/app/page": [
+      "static/media/_F62fjtqLzI2JPCgQBnw7HFYwQgP_FVthw-s.p.6df33075.woff2"
+    ],
+    "[project]/src/app/login/page": [
+      "static/media/_F62fjtqLzI2JPCgQBnw7HFYwQgP_FVthw-s.p.6df33075.woff2"
+    ],
+    "[project]/src/app/authenticated/hardware/[id]/page": [
+      "static/media/_F62fjtqLzI2JPCgQBnw7HFYwQgP_FVthw-s.p.6df33075.woff2"
+    ]
+  },
+  "appUsingSizeAdjust": true,
   "pages": {},
   "pagesUsingSizeAdjust": false
 }

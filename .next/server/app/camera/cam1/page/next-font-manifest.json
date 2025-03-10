@@ -1,6 +1,11 @@
 {
   "pages": {},
-  "app": {},
-  "appUsingSizeAdjust": false,
+  "app": {
+    "[project]/src/app/camera/cam1/page": [
+      "static/media/_F62fjtqLzI2JPCgQBnw7HFYxQgP_FVth9IU-s.p.889ae5a3.woff2",
+      "static/media/_F62fjtqLzI2JPCgQBnw7HFYwQgP_FVthw-s.p.6df33075.woff2"
+    ]
+  },
+  "appUsingSizeAdjust": true,
   "pagesUsingSizeAdjust": false
 }

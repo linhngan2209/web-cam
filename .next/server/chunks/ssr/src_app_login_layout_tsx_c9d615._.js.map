@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 7, "column": 0}, "map": {"version":3,"sources":["file://C%3A/Users/ADMIN/camera-web/src/app/login/layout.tsx"],"sourcesContent":["import '@/style/globals.css';\r\nexport default function LoginLayout({ children }: any) {\r\n  return <div className=\"login-layout\">{children}</div>;\r\n}"],"names":[],"mappings":";;;;;;AACe,SAAS,YAAY,EAAE,QAAQ,EAAO;IACnD,qBAAO,8OAAC;QAAI,WAAU;kBAAgB;;;;;;AACxC"}},
+    {"offset": {"line": 23, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
+}
